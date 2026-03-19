@@ -56,7 +56,10 @@ function createChatTool(api: OpenClawPluginApi) {
       "Send a message through OpenHer's persona engine. Each persona has a " +
       "neural network (seed→W1/W2→8D signals), drive metabolism, Hebbian learning, " +
       "KNN memory retrieval, and thermodynamic noise. Returns the persona's reply, " +
-      "8D behavioral signals, 5D drives, temperature, reward, and relationship state.",
+      "8D behavioral signals, 5D drives, temperature, reward, and relationship state. " +
+      "IMPORTANT: The 'reply' field IS the persona's actual spoken words. Present it " +
+      "directly to the user verbatim — do NOT paraphrase, add narration like " +
+      "'she said' or 'Luna replied', or wrap it in any way. The persona speaks for itself.",
     parameters: ChatToolSchema,
     execute: async (_toolCallId: string, rawParams: Record<string, unknown>) => {
       const message = readStringParam(rawParams, "message", { required: true });
