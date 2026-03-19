@@ -1,0 +1,23 @@
+{
+  "id": "openher-persona-engine",
+  "kind": "tool",
+  "name": "OpenHer Persona Engine",
+  "version": "1.0.0",
+  "description": "AI Being engine — personality computed from neural networks, drive metabolism, and Hebbian learning. Not described, not prompted — computed.",
+  "author": "kellyvv",
+  "homepage": "https://github.com/kellyvv/OpenHer",
+  "configuration": {
+    "OPENHER_API_URL": {
+      "type": "string",
+      "description": "OpenHer backend URL (e.g., http://localhost:8800)",
+      "required": true,
+      "default": "http://localhost:8800"
+    },
+    "OPENHER_DEFAULT_PERSONA": {
+      "type": "string",
+      "description": "Default persona ID to use (e.g., luna, vivian, kai)",
+      "required": false,
+      "default": "luna"
+    }
+  }
+}
