@@ -1,34 +1,28 @@
-__pycache__/
-*.pyc
+# OS
 .DS_Store
-*.db
-memory_db/
-eval_results/
+
+# Dependencies
 node_modules/
+
+# Environment
 .env
+
+# Logs
 *.log
-*.aux
-*.bbl
-*.blg
-*.out
-.gemini/
+
+# Editor / IDE
 .vscode/
+.gemini/
 .claude/
+
+# Build
+dist/
+
+# Vendor (OpenClaw source — clone separately)
+vendor/
+
+# Cache
 .cache/
 .data/
-models/
+__pycache__/
 .pytest_cache/
-venv/
-*.egg-info/
-dist/
-build/
-*.whl
-server/venv/
-server/.cache/
-server/.data/
-server/__pycache__/
-web/node_modules/
-web/dist/
-vendor/*
-!vendor/EverMemOS
-docs/assets/demo.mp4

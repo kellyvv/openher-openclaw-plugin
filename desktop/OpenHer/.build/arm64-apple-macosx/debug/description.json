@@ -1,0 +1,795 @@
+{
+  "builtTestProducts" : [
+
+  ],
+  "copyCommands" : {
+    "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer_OpenHer.bundle/chat_bg.png" : {
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Resources/chat_bg.png"
+        }
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer_OpenHer.bundle/chat_bg.png"
+        }
+      ]
+    }
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.OpenHer-arm64-apple-macosx26.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/sources",
+      "importPath" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/AppState.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Effects/PersonaDormantEffect.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/L10n.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Models/ChatMessage.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Models/Mood.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Models/Persona.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/OpenHerApp.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Services/APIClient.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Services/AudioPlayerManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Services/ConnectionManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Services/MoodEngine.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Services/NotificationService.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Services/WebSocketManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Theme/PaperBackground.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Theme/PaperTheme.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Conversation/AvatarHeader.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Conversation/FrequencyIndicator.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Conversation/InputLine.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Conversation/MessageRow.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Conversation/VoiceMessageView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/ConversationPanel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Discovery/AwakeningView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Discovery/DiscoveryView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Discovery/PersonaCard.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/MenuBar/MenuBarView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/RootView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Settings/SettingsView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/DerivedSources/resource_bundle_accessor.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "virtual",
+          "name" : "<OpenHer-arm64-apple-macosx26.0-debug.module-resources>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/sources"
+        }
+      ],
+      "isLibrary" : false,
+      "moduleName" : "OpenHer",
+      "moduleOutputPath" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/Modules/OpenHer.swiftmodule",
+      "objects" : [
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/AppState.swift.o",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/PersonaDormantEffect.swift.o",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/L10n.swift.o",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/ChatMessage.swift.o",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/Mood.swift.o",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/Persona.swift.o",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/OpenHerApp.swift.o",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/APIClient.swift.o",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/AudioPlayerManager.swift.o",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/ConnectionManager.swift.o",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/MoodEngine.swift.o",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/NotificationService.swift.o",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/WebSocketManager.swift.o",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/PaperBackground.swift.o",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/PaperTheme.swift.o",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/AvatarHeader.swift.o",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/FrequencyIndicator.swift.o",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/InputLine.swift.o",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/MessageRow.swift.o",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/VoiceMessageView.swift.o",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/ConversationPanel.swift.o",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/AwakeningView.swift.o",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/DiscoveryView.swift.o",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/PersonaCard.swift.o",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/MenuBarView.swift.o",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/RootView.swift.o",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/SettingsView.swift.o",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/resource_bundle_accessor.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx14.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-j16",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_AVAILABLE",
+        "-module-cache-path",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-Xfrontend",
+        "-entry-point-function-name",
+        "-Xfrontend",
+        "OpenHer_main",
+        "-color-diagnostics",
+        "-swift-version",
+        "5",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "openher"
+      ],
+      "outputFileMapPath" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/AppState.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/PersonaDormantEffect.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/L10n.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/ChatMessage.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/Mood.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/Persona.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/OpenHerApp.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/APIClient.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/AudioPlayerManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/ConnectionManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/MoodEngine.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/NotificationService.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/WebSocketManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/PaperBackground.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/PaperTheme.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/AvatarHeader.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/FrequencyIndicator.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/InputLine.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/MessageRow.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/VoiceMessageView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/ConversationPanel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/AwakeningView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/DiscoveryView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/PersonaCard.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/MenuBarView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/RootView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/SettingsView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/resource_bundle_accessor.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/Modules/OpenHer.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/AppState.swift",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Effects/PersonaDormantEffect.swift",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/L10n.swift",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Models/ChatMessage.swift",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Models/Mood.swift",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Models/Persona.swift",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/OpenHerApp.swift",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Services/APIClient.swift",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Services/AudioPlayerManager.swift",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Services/ConnectionManager.swift",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Services/MoodEngine.swift",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Services/NotificationService.swift",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Services/WebSocketManager.swift",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Theme/PaperBackground.swift",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Theme/PaperTheme.swift",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Conversation/AvatarHeader.swift",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Conversation/FrequencyIndicator.swift",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Conversation/InputLine.swift",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Conversation/MessageRow.swift",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Conversation/VoiceMessageView.swift",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/ConversationPanel.swift",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Discovery/AwakeningView.swift",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Discovery/DiscoveryView.swift",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Discovery/PersonaCard.swift",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/MenuBar/MenuBarView.swift",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/RootView.swift",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Settings/SettingsView.swift",
+        "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/DerivedSources/resource_bundle_accessor.swift"
+      ],
+      "tempsPath" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build",
+      "wholeModuleOptimization" : false
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "OpenHer" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "OpenHer",
+      "-package-name",
+      "openher",
+      "-c",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/AppState.swift",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Effects/PersonaDormantEffect.swift",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/L10n.swift",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Models/ChatMessage.swift",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Models/Mood.swift",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Models/Persona.swift",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/OpenHerApp.swift",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Services/APIClient.swift",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Services/AudioPlayerManager.swift",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Services/ConnectionManager.swift",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Services/MoodEngine.swift",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Services/NotificationService.swift",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Services/WebSocketManager.swift",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Theme/PaperBackground.swift",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Theme/PaperTheme.swift",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Conversation/AvatarHeader.swift",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Conversation/FrequencyIndicator.swift",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Conversation/InputLine.swift",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Conversation/MessageRow.swift",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Conversation/VoiceMessageView.swift",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/ConversationPanel.swift",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Discovery/AwakeningView.swift",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Discovery/DiscoveryView.swift",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Discovery/PersonaCard.swift",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/MenuBar/MenuBarView.swift",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/RootView.swift",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Settings/SettingsView.swift",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/DerivedSources/resource_bundle_accessor.swift",
+      "-I",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx14.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j16",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_AVAILABLE",
+      "-module-cache-path",
+      "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-Xfrontend",
+      "-entry-point-function-name",
+      "-Xfrontend",
+      "OpenHer_main",
+      "-color-diagnostics",
+      "-swift-version",
+      "5",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "openher",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "OpenHer" : [
+
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+
+  },
+  "traitConfiguration" : {
+    "default" : {
+
+    }
+  },
+  "writeCommands" : {
+    "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer-entitlement.plist" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<entitlement-plist>"
+        },
+        {
+          "kind" : "virtual",
+          "name" : "<com.apple.security.get-task-allow>"
+        }
+      ],
+      "outputFilePath" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer-entitlement.plist"
+    },
+    "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/AppState.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Effects/PersonaDormantEffect.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/L10n.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Models/ChatMessage.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Models/Mood.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Models/Persona.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/OpenHerApp.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Services/APIClient.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Services/AudioPlayerManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Services/ConnectionManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Services/MoodEngine.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Services/NotificationService.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Services/WebSocketManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Theme/PaperBackground.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Theme/PaperTheme.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Conversation/AvatarHeader.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Conversation/FrequencyIndicator.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Conversation/InputLine.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Conversation/MessageRow.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Conversation/VoiceMessageView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/ConversationPanel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Discovery/AwakeningView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Discovery/DiscoveryView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Discovery/PersonaCard.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/MenuBar/MenuBarView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/RootView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/Sources/Views/Settings/SettingsView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/DerivedSources/resource_bundle_accessor.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/sources"
+    },
+    "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/APIClient.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/AppState.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/AudioPlayerManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/AvatarHeader.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/AwakeningView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/ChatMessage.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/ConnectionManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/ConversationPanel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/DiscoveryView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/FrequencyIndicator.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/InputLine.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/L10n.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/MenuBarView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/MessageRow.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/Mood.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/MoodEngine.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/NotificationService.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/OpenHerApp.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/PaperBackground.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/PaperTheme.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/Persona.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/PersonaCard.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/PersonaDormantEffect.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/RootView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/SettingsView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/VoiceMessageView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/WebSocketManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.build/resource_bundle_accessor.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/OpenHer.product/Objects.LinkFileList"
+    },
+    "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/Users/zxw/AITOOL/openher/desktop/OpenHer/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+    }
+  }
+}
