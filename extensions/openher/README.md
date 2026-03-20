@@ -47,6 +47,23 @@ The persona engine computes personality through:
 
 Different personas (Luna, Vivian, Kai, etc.) have different drive baselines, engine parameters, and genesis seeds — producing fundamentally different computed personalities from the same engine.
 
+## Recommended Models
+
+The OpenClaw LLM acts as a "proxy" that forwards user messages to the persona engine and presents its reply. **Stronger models follow the proxy instructions better**, producing clean first-person output instead of wrapping replies in narration like `"Luna said: ..."`.
+
+| Model | Proxy Quality | Notes |
+|-------|---------------|-------|
+| **MiniMax M2.7** | ✅ Perfect | Recommended. Clean first-person, zero narration |
+| **Claude Sonnet 4.5+** | ✅ Perfect | Excellent instruction following |
+| **GPT-5.2+** | ✅ Good | Occasional minor formatting |
+| **Gemini 2.5 Flash** | ⚠️ Good | Mostly follows, rare narration |
+| **Gemini Flash Lite** | ❌ Poor | Frequently adds "Luna replied:" narration |
+
+> **Quick recommendation:** Set your OpenClaw model to `minimax/MiniMax-M2.7` for the best persona experience:
+> ```bash
+> openclaw config set agents.defaults.model "minimax/MiniMax-M2.7"
+> ```
+
 ## Requirements
 
 - OpenHer backend running (`python main.py` or `uvicorn main:app`)
