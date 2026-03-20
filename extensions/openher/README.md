@@ -24,6 +24,13 @@ openclaw plugins install -l ./extensions/openher
 |-----|---------|-------------|
 | `OPENHER_API_URL` | `http://localhost:8800` | OpenHer backend URL |
 | `OPENHER_DEFAULT_PERSONA` | `luna` | Default persona ID |
+| `OPENHER_MODE` | `hybrid` | `hybrid` = preserve OpenClaw capabilities; `exclusive` = pure persona proxy |
+
+### Proxy Modes
+
+- **`hybrid`** (default) — Appends persona proxy instructions to OpenClaw's system prompt. The LLM retains all other capabilities (file editing, commands, etc.) while being told to present persona replies verbatim. Works great with MiniMax M2.7, Claude, and other strong models.
+
+- **`exclusive`** — Completely overrides the system prompt. The LLM becomes a pure persona proxy — nothing else. Best persona fidelity, but other OpenClaw tools stop working. Use this for dedicated persona chat bots.
 
 ## Tools
 
@@ -31,8 +38,12 @@ openclaw plugins install -l ./extensions/openher
 |------|-------------|----------|
 | `openher_chat` | Full 13-step engine conversation | ✅ 2 LLM calls (Critic + Actor) |
 | `openher_status` | Query personality state | ❌ Zero |
-| `openher_switch` | Switch active persona | ❌ Zero |
-| `openher_proactive_tick` | Trigger autonomous message | ✅ 2 LLM calls (frozen learning) |
+
+## Features
+
+- **Health check on startup** — Plugin verifies the OpenHer backend is reachable when the gateway starts. Shows a clear warning if not.
+- **Friendly error messages** — If the backend goes down mid-conversation, the tool returns a human-readable message with instructions to restart it.
+- **Request timeouts** — All HTTP calls have configurable timeouts with AbortController instead of hanging forever.
 
 ## Engine Architecture
 

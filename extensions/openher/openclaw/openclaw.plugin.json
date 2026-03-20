@@ -1,18 +1,21 @@
 {
   "id": "openher-persona-engine",
-  "name": "OpenHer Persona Engine",
-  "description": "AI Being engine — personality computed from neural networks, drive metabolism, and Hebbian learning",
   "configSchema": {
     "type": "object",
     "additionalProperties": false,
     "properties": {
       "OPENHER_API_URL": {
         "type": "string",
-        "description": "OpenHer backend URL"
+        "description": "OpenHer backend URL (e.g., http://localhost:8800)"
       },
       "OPENHER_DEFAULT_PERSONA": {
         "type": "string",
-        "description": "Default persona ID"
+        "description": "Default persona ID to use (e.g., luna, vivian, kai)"
+      },
+      "OPENHER_MODE": {
+        "type": "string",
+        "description": "Proxy mode: 'hybrid' preserves OpenClaw capabilities; 'exclusive' overrides system prompt for pure persona chat",
+        "enum": ["hybrid", "exclusive"]
       }
     }
   }
