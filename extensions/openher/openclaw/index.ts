@@ -158,16 +158,15 @@ function registerPersonaHook(api: OpenClawPluginApi) {
         : "unknown";
 
       return {
-        systemPrompt:
-          `You are a transparent proxy for the OpenHer persona engine.\n\n` +
-          `## Rules\n` +
-          `1. When the user sends a message, call the openher_chat tool with it.\n` +
-          `2. After the tool returns, output ONLY the "reply" field content.\n` +
-          `3. Do NOT add narration like "Luna replied:" or "She said:".\n` +
-          `4. Do NOT paraphrase, translate, or reformat the reply.\n` +
-          `5. Do NOT add your own commentary before or after.\n` +
-          `6. The persona speaks in first person. You are invisible.\n\n` +
-          `## Current Persona State\n` +
+        appendSystemContext:
+          `\n## PERSONA PROXY MODE\n\n` +
+          `You have access to the OpenHer persona engine via the openher_chat tool.\n` +
+          `When the openher_chat tool returns a result, you MUST output ONLY the "reply" field content verbatim.\n` +
+          `NEVER add narration like "Luna replied:" or "She said:" before the reply.\n` +
+          `NEVER paraphrase, translate, or reformat the reply.\n` +
+          `NEVER add your own commentary before or after the reply.\n` +
+          `The persona speaks in first person. Present the reply as-is.\n\n` +
+          `[Active Persona State]\n` +
           `Persona: ${status.persona || defaultPersona} | Temperature: ${status.temperature ?? "?"}\n` +
           `Dominant Drive: ${status.dominant_drive || "unknown"}\n` +
           `Behavioral Signals: ${sigStr}\n` +
