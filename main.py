@@ -881,6 +881,170 @@ async def get_avatar(persona_id: str):
 
 
 # ──────────────────────────────────────────────────────────────
+# OpenClaw Plugin API — Engine endpoints for external consumers
+# ──────────────────────────────────────────────────────────────
+
+class EngineRequest(BaseModel):
+    """REST API request for OpenClaw plugin engine interaction."""
+    persona_id: str
+    user_id: str       # Persistent identity — same user_id + persona_id resumes prior state
+    message: str
+    user_name: Optional[str] = None
+
+
+@app.post("/api/v1/engine/chat")
+async def engine_chat(req: EngineRequest):
+    """Full 13-step persona engine interaction.
+
+    Runs the complete lifecycle: Critic → Metabolism → Signals → KNN →
+    Prompt → Actor → Hebbian Learning → Memory Store/Search.
+    Returns comprehensive engine state alongside the reply.
+    """
+    try:
+        session_id, agent = get_or_create_session(
+            session_id=None,
+            persona_id=req.persona_id,
+            user_name=req.user_id,  # user_id IS the stable identity
+        )
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+    result = await agent.chat(req.message)
+    _persist_agent(agent)
+
+    status = agent.get_status()
+    debug = agent.get_debug_status()
+
+    # Skill outputs: convert server-local paths to URLs, passthrough pure data
+    skill_outputs = {}
+    if result.get("image_path"):
+        _parts = result["image_path"].replace("\\", "/").split("/")
+        _selfie_idx = next((i for i, p in enumerate(_parts) if p == "selfie"), -1)
+        if _selfie_idx >= 0:
+            skill_outputs["image_url"] = "/api/selfie/" + "/".join(_parts[_selfie_idx + 1:])
+    skill_outputs["audio_available"] = bool(result.get("audio_path"))
+    if result.get("segments"):
+        skill_outputs["segments"] = result["segments"]
+    if result.get("delays_ms"):
+        skill_outputs["delays_ms"] = result["delays_ms"]
+
+    return {
+        # Conversation result
+        "reply": result["reply"],
+        "modality": result["modality"],
+        "monologue": debug.get("monologue", ""),
+        # 8D behavioral signals
+        "signals": debug["signals"],
+        # 5D drives
+        "drive_state": debug["drive_state"],
+        "drive_baseline": debug["drive_baseline"],
+        # Temperature & frustration
+        "temperature": debug["temperature"],
+        "frustration": debug["frustration"],
+        "reward": debug["reward"],
+        # Relationship EMA
+        "relationship": debug["relationship"],
+        # Neural network internals (25D→24D→8D)
+        "hidden_activations": debug["hidden_activations"],
+        "input_vector": debug["input_vector"],
+        # Memory
+        "style_recall": debug["style_recall"],
+        "memory_count": status["memory_count"],
+        "personal_memories": status["personal_memories"],
+        # Skill outputs (URL-converted)
+        **skill_outputs,
+        # Metadata
+        "age": debug["age"],
+        "turn_count": debug["turn_count"],
+        "phase_transition": debug["phase_transition"],
+        "session_id": session_id,
+    }
+
+
+@app.get("/api/v1/engine/status")
+async def engine_status(persona_id: str, user_id: str):
+    """Query current personality state without LLM calls.
+
+    Returns drive state, signals, temperature, relationship, memory counts.
+    """
+    # Find active session matching user_id + persona_id
+    for sid, (agent, _) in active_sessions.items():
+        if agent.user_id == user_id and agent.persona.persona_id == persona_id:
+            status = agent.get_status()
+            debug = agent.get_debug_status()
+            return {
+                "alive": True,
+                **status,
+                "debug": debug,
+            }
+
+    # No active session — check for persisted proactive meta
+    if state_store:
+        la, cad, sv = state_store.load_proactive_meta(user_id, persona_id)
+        if la > 0:
+            return {
+                "alive": False,
+                "last_active": la,
+                "interaction_cadence": cad,
+                "state_version": sv,
+            }
+
+    return {"alive": False, "message": "No session found"}
+
+
+@app.get("/api/v1/engine/personas")
+async def engine_personas():
+    """List all personas with engine parameters and genesis seed counts.
+
+    Returns drive_baseline, engine_params, and genesis_seed_count for each
+    persona — everything needed to understand the engine configuration.
+    """
+    from engine.genome.style_memory import ContinuousStyleMemory
+
+    personas = persona_loader.load_all()
+    _db_path = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)), ".data", "openher.db"
+    )
+    result = []
+    for pid, p in personas.items():
+        genesis_count = ContinuousStyleMemory.count_genesis(pid, _db_path)
+        result.append({
+            "persona_id": pid,
+            "name": p.name,
+            "name_zh": p.name_zh,
+            "gender": p.gender,
+            "age": p.age,
+            "lang": p.lang,
+            "mbti": p.mbti,
+            "tags": p.tags,
+            "tags_zh": p.tags_zh,
+            "drive_baseline": p.drive_baseline,
+            "engine_params": p.engine_params,
+            "genesis_seed_count": genesis_count,
+        })
+    return {"personas": result}
+
+
+@app.post("/api/v1/engine/proactive")
+async def engine_proactive(persona_id: str, user_id: str):
+    """Manually trigger a proactive tick for a persona.
+
+    The persona checks if any drive impulse is strong enough to
+    initiate conversation autonomously (FROZEN learning — no
+    relationship/baseline updates).
+    """
+    for sid, (agent, _) in active_sessions.items():
+        if agent.user_id == user_id and agent.persona.persona_id == persona_id:
+            result = await agent.proactive_tick()
+            if result:
+                _persist_agent(agent)
+                return {**result, "session_id": sid}
+            return {"proactive": False, "reason": "no impulse"}
+
+    return {"proactive": False, "reason": "no active session"}
+
+
+# ──────────────────────────────────────────────────────────────
 # WebSocket Endpoint — Real-time chat with Genome v10
 # ──────────────────────────────────────────────────────────────
 

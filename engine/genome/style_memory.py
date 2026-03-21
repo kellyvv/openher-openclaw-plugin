@@ -397,3 +397,20 @@ class ContinuousStyleMemory:
         """, (persona_id, json.dumps(seeds, ensure_ascii=False), time.time()))
         conn.commit()
         conn.close()
+
+    @staticmethod
+    def count_genesis(persona_id: str, db_path: str) -> int:
+        """Count genesis seeds for a persona without loading them into memory.
+
+        Lightweight read-only query — safe for listing endpoints.
+        """
+        try:
+            conn = sqlite3.connect(db_path)
+            row = conn.execute(
+                "SELECT seeds FROM genesis_seed WHERE persona_id = ?",
+                (persona_id,),
+            ).fetchone()
+            conn.close()
+            return len(json.loads(row[0])) if row else 0
+        except Exception:
+            return 0

@@ -1,0 +1,34 @@
+{
+  "name": "@openher/openclaw-plugin",
+  "version": "1.0.0",
+  "description": "OpenHer Persona Engine plugin for OpenClaw — personality computed from neural networks, drive metabolism, and Hebbian learning",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "openclaw",
+    "plugin",
+    "openher",
+    "persona",
+    "ai-being",
+    "personality-engine",
+    "genome-engine"
+  ],
+  "author": "kellyvv",
+  "license": "MIT",
+  "homepage": "https://github.com/kellyvv/OpenHer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kellyvv/OpenHer"
+  },
+  "peerDependencies": {
+    "@anthropic-ai/claude-code": ">=1.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
