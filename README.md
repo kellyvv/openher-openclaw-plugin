@@ -10,6 +10,8 @@
 [![OpenClaw](https://img.shields.io/badge/OpenClaw-Plugin-blue?style=flat-square)](https://openclaw.ai)
 [![License](https://img.shields.io/badge/License-MPL%202.0-blue?style=flat-square)](LICENSE)
 
+**English** | [中文](README_CN.md)
+
 </div>
 
 ---
