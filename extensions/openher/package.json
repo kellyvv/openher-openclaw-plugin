@@ -2,13 +2,9 @@
   "name": "@openher/openclaw-plugin",
   "version": "1.0.0",
   "description": "OpenHer Persona Engine plugin for OpenClaw — personality computed from neural networks, drive metabolism, and Hebbian learning",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch",
-    "prepublishOnly": "npm run build"
-  },
+  "type": "module",
+  "main": "index.ts",
+  "scripts": {},
   "keywords": [
     "openclaw",
     "openclaw-plugin",
@@ -31,11 +27,14 @@
     "url": "https://github.com/kellyvv/openher-openclaw-plugin/issues"
   },
   "files": [
-    "dist/",
+    "index.ts",
     "openclaw.plugin.json",
     "README.md"
   ],
-  "devDependencies": {
-    "typescript": "^5.0.0"
+  "dependencies": {
+    "@sinclair/typebox": "0.34.48"
+  },
+  "peerDependencies": {
+    "openclaw": "*"
   }
 }
