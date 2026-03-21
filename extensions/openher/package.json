@@ -11,23 +11,30 @@
   },
   "keywords": [
     "openclaw",
-    "plugin",
+    "openclaw-plugin",
     "openher",
     "persona",
     "ai-being",
     "personality-engine",
-    "genome-engine"
+    "genome-engine",
+    "neural-network",
+    "hebbian-learning"
   ],
   "author": "kellyvv",
-  "license": "MIT",
-  "homepage": "https://github.com/kellyvv/OpenHer",
+  "license": "MPL-2.0",
+  "homepage": "https://github.com/kellyvv/openher-openclaw-plugin",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kellyvv/OpenHer"
+    "url": "https://github.com/kellyvv/openher-openclaw-plugin.git"
   },
-  "peerDependencies": {
-    "@anthropic-ai/claude-code": ">=1.0.0"
+  "bugs": {
+    "url": "https://github.com/kellyvv/openher-openclaw-plugin/issues"
   },
+  "files": [
+    "dist/",
+    "openclaw.plugin.json",
+    "README.md"
+  ],
   "devDependencies": {
     "typescript": "^5.0.0"
   }
