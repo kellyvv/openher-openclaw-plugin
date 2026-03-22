@@ -84,11 +84,13 @@ function ask(question) {
 }
 
 function askSecret(question) {
+  // Non-TTY fallback: just use regular readline (shows input)
+  if (!process.stdin.isTTY) {
+    return ask(question);
+  }
   return new Promise((resolve) => {
     process.stdout.write(`${C.cyan}[openher]${C.reset} ${question}`);
-    const rl = createInterface({ input: process.stdin, terminal: false });
-    // Mute echo
-    if (process.stdin.isTTY) process.stdin.setRawMode(true);
+    process.stdin.setRawMode(true);
     let buf = "";
     process.stdin.resume();
     process.stdin.on("data", function handler(chunk) {
@@ -96,14 +98,13 @@ function askSecret(question) {
       for (const ch of s) {
         if (ch === "\n" || ch === "\r") {
           process.stdin.removeListener("data", handler);
-          if (process.stdin.isTTY) process.stdin.setRawMode(false);
+          process.stdin.setRawMode(false);
           process.stdin.pause();
           process.stdout.write("\n");
-          rl.close();
           resolve(buf);
           return;
         } else if (ch === "\u0003") {
-          // Ctrl+C
+          process.stdin.setRawMode(false);
           process.exit(1);
         } else if (ch === "\x7f" || ch === "\b") {
           buf = buf.slice(0, -1);
@@ -154,6 +155,15 @@ async function install() {
 
   // ── Step 1: Check prerequisites ──
   log("Checking prerequisites...");
+
+  // Node.js version (openclaw requires v22.12+)
+  const nodeVer = process.versions.node.split(".").map(Number);
+  if (nodeVer[0] < 22 || (nodeVer[0] === 22 && nodeVer[1] < 12)) {
+    error(`Node.js v22.12+ required (current: v${process.versions.node})`);
+    console.log("  Install via: https://nodejs.org/ or nvm install 22");
+    process.exit(1);
+  }
+  success(`Node.js v${process.versions.node}`);
 
   if (!which("openclaw")) {
     error("OpenClaw not found. Please install it first:");
@@ -356,35 +366,6 @@ async function install() {
     env: { ...process.env, PORT: String(DEFAULT_PORT) },
   });
 
-  // Wait for startup
-  let started = false;
-  const startTimeout = setTimeout(() => {
-    if (!started) {
-      warn("Backend is still starting. Check manually:");
-      console.log(`  cd ${backendDir} && .venv/bin/python main.py`);
-    }
-  }, 15000);
-
-  child.stdout.on("data", (data) => {
-    const str = data.toString();
-    if (str.includes("Uvicorn running") || str.includes("Application startup")) {
-      started = true;
-      clearTimeout(startTimeout);
-      success(`Backend running on http://localhost:${DEFAULT_PORT}`);
-      finalize();
-    }
-  });
-
-  child.stderr.on("data", (data) => {
-    const str = data.toString();
-    if (str.includes("Uvicorn running") || str.includes("Application startup")) {
-      started = true;
-      clearTimeout(startTimeout);
-      success(`Backend running on http://localhost:${DEFAULT_PORT}`);
-      finalize();
-    }
-  });
-
   child.unref();
 
   // Write PID for later stop command
@@ -392,28 +373,39 @@ async function install() {
     writeFileSync(join(openherDir, "backend.pid"), String(child.pid), "utf-8");
   } catch {}
 
-  // If backend starts quickly, finalize is called above
-  // Otherwise, wait for the timeout
-  if (!started) {
-    await new Promise((resolve) => {
-      const check = setInterval(() => {
-        if (started) {
-          clearInterval(check);
-          resolve();
-        }
-      }, 500);
-      // Max wait 20s
-      setTimeout(() => {
+  // Wait for startup signal from stdout/stderr
+  let started = false;
+  const onOutput = (data) => {
+    const str = data.toString();
+    if (!started && (str.includes("Uvicorn running") || str.includes("Application startup"))) {
+      started = true;
+    }
+  };
+  child.stdout.on("data", onOutput);
+  child.stderr.on("data", onOutput);
+
+  // Poll for up to 20s
+  await new Promise((resolve) => {
+    const check = setInterval(() => {
+      if (started) {
         clearInterval(check);
         resolve();
-      }, 20000);
-    });
+      }
+    }, 500);
+    setTimeout(() => {
+      clearInterval(check);
+      resolve();
+    }, 20000);
+  });
+
+  if (started) {
+    success(`Backend running on http://localhost:${DEFAULT_PORT}`);
+  } else {
+    warn("Backend may still be starting up. Check:");
+    console.log(`  cd ${backendDir} && .venv/bin/python main.py`);
   }
 
-  if (!started) {
-    warn("Backend may still be starting up...");
-    finalize();
-  }
+  finalize();
 }
 
 function finalize() {
