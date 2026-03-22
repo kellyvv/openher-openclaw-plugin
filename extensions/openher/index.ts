@@ -284,7 +284,7 @@ function registerPersonaHook(api: OpenClawPluginApi) {
 // ── Plugin Entry ──
 
 const plugin = {
-  id: "openher-persona-engine",
+  id: "openclaw-plugin",
   name: "OpenHer Persona Engine",
   description:
     "AI Being engine — personality computed from neural networks, " +

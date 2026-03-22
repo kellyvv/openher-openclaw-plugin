@@ -1,5 +1,5 @@
 {
-  "id": "openher-persona-engine",
+  "id": "openclaw-plugin",
   "configSchema": {
     "type": "object",
     "additionalProperties": false,
