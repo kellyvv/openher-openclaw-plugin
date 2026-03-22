@@ -1412,3 +1412,14 @@ async def websocket_chat(ws: WebSocket):
         if session_id:
             remove_session(session_id)
         print(f"[ws] 连接关闭: session={session_id}")
+
+
+# ── Entry Point ──
+
+if __name__ == "__main__":
+    import uvicorn
+
+    host = os.getenv("HOST", "0.0.0.0")
+    port = int(os.getenv("PORT", "8800"))
+    print(f"[openher] Starting server on {host}:{port}")
+    uvicorn.run("main:app", host=host, port=port, reload=False)
