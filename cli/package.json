@@ -1,0 +1,26 @@
+{
+  "name": "@openher/cli",
+  "version": "1.0.0",
+  "description": "One-click installer for OpenHer Persona Engine — AI Being plugin for OpenClaw",
+  "type": "module",
+  "bin": {
+    "openher": "cli.mjs"
+  },
+  "files": [
+    "cli.mjs"
+  ],
+  "keywords": [
+    "openclaw",
+    "openher",
+    "ai-being",
+    "persona-engine",
+    "installer"
+  ],
+  "author": "kellyvv",
+  "license": "MPL-2.0",
+  "homepage": "https://github.com/kellyvv/openher-openclaw-plugin",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kellyvv/openher-openclaw-plugin.git"
+  }
+}
