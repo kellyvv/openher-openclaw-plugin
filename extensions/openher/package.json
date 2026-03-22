@@ -1,9 +1,12 @@
 {
   "name": "@openher/openclaw-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "OpenHer Persona Engine plugin for OpenClaw — personality computed from neural networks, drive metabolism, and Hebbian learning",
   "type": "module",
   "main": "index.ts",
+  "openclaw": {
+    "extensions": ["./index.ts"]
+  },
   "scripts": {},
   "keywords": [
     "openclaw",
