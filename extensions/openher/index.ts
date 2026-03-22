@@ -1,7 +1,7 @@
 /**
  * OpenHer Persona Engine — OpenClaw Extension
  *
- * Registers 2 tools + 1 hook using the real OpenClaw plugin SDK:
+ * Registers 2 tools + 1 hook:
  *   - openher_chat: Full 13-step persona engine conversation
  *   - openher_status: Query personality state (zero LLM cost)
  *   - before_prompt_build hook: Inject persona proxy mode + state
@@ -15,11 +15,29 @@
  */
 
 import { Type } from "@sinclair/typebox";
-import { jsonResult, readStringParam } from "openclaw/plugin-sdk/agent-runtime";
-import { definePluginEntry, type AnyAgentTool } from "openclaw/plugin-sdk/core";
-import type { OpenClawPluginApi } from "openclaw/plugin-sdk/plugin-runtime";
+import type { OpenClawPluginApi } from "openclaw/plugin-sdk";
+import { emptyPluginConfigSchema } from "openclaw/plugin-sdk";
 
-// ── Helpers ──
+// ── Inline helpers (replacing SDK-internal functions) ──
+
+function readStringParam(
+  params: Record<string, unknown>,
+  key: string,
+  opts?: { required?: boolean },
+): string {
+  const val = params[key];
+  if (val === undefined || val === null || val === "") {
+    if (opts?.required) throw new Error(`Missing required parameter: ${key}`);
+    return "";
+  }
+  return String(val);
+}
+
+function jsonResult(data: unknown): { type: "json"; value: unknown } {
+  return { type: "json", value: data };
+}
+
+// ── Config ──
 
 function resolveConfig(api: OpenClawPluginApi) {
   return {
@@ -265,18 +283,20 @@ function registerPersonaHook(api: OpenClawPluginApi) {
 
 // ── Plugin Entry ──
 
-export default definePluginEntry({
+const plugin = {
   id: "openher-persona-engine",
   name: "OpenHer Persona Engine",
   description:
     "AI Being engine — personality computed from neural networks, " +
     "drive metabolism, and Hebbian learning. Adds openher_chat and " +
     "openher_status tools.",
-  register(api) {
+  configSchema: emptyPluginConfigSchema(),
+
+  register(api: OpenClawPluginApi) {
     const { apiUrl, defaultPersona, mode } = resolveConfig(api);
 
-    api.registerTool(createChatTool(api) as AnyAgentTool);
-    api.registerTool(createStatusTool(api) as AnyAgentTool);
+    api.registerTool(createChatTool(api) as any);
+    api.registerTool(createStatusTool(api) as any);
     registerPersonaHook(api);
 
     // Non-blocking health check
@@ -287,4 +307,6 @@ export default definePluginEntry({
         `API: ${apiUrl}, persona: ${defaultPersona}, mode: ${mode}`,
     );
   },
-});
+};
+
+export default plugin;
