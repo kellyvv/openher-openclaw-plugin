@@ -48,23 +48,45 @@ None of this is hardcoded. It **emerges** from neural networks, drive metabolism
 
 ---
 
-## Install
+## Quick Start
+
+```bash
+npx -y @openher/cli install
+```
+
+That's it. The installer will:
+- ✅ Install the OpenClaw plugin
+- ✅ Clone and set up the Python backend
+- ✅ Walk you through LLM provider + API key setup
+- ✅ Let you choose your persona
+- ✅ Start everything
+
+<details>
+<summary>Manual install (advanced)</summary>
 
 ```bash
 # 1. Install the plugin
 openclaw plugins install @openher/openclaw-plugin
 
-# 2. Start the OpenHer backend (see Backend Setup below)
+# 2. Clone and set up the backend
+git clone https://github.com/kellyvv/openher-openclaw-plugin.git
+cd openher-openclaw-plugin
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env  # Edit with your API key
+
+# 3. Start the backend
 python main.py
 
-# 3. Set a recommended model
+# 4. Set a recommended model + start gateway
 openclaw config set agents.defaults.model "minimax/MiniMax-M2.7"
-
-# 4. Start the gateway
 openclaw gateway start
 ```
 
-That's it. Every message now passes through a full neural-network personality engine.
+</details>
+
+Every message now passes through a full neural-network personality engine.
+
 
 ---
 
