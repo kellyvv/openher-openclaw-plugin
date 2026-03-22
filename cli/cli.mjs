@@ -73,15 +73,32 @@ function which(bin) {
   }
 }
 
+// Single shared readline instance — prevents piped stdin races
+let _rl = null;
+function getRL() {
+  if (!_rl) {
+    _rl = createInterface({ input: process.stdin, output: process.stdout });
+    _rl.on("close", () => { _rl = null; });
+  }
+  return _rl;
+}
+function closeRL() {
+  if (_rl) { _rl.close(); _rl = null; }
+}
+
 function ask(question) {
-  const rl = createInterface({ input: process.stdin, output: process.stdout });
   return new Promise((resolve) => {
+    const rl = getRL();
+    if (!rl) { resolve(""); return; }
     rl.question(`${C.cyan}[openher]${C.reset} ${question}`, (answer) => {
-      rl.close();
       resolve(answer.trim());
     });
   });
 }
+
+// Keep event loop alive until we explicitly exit (prevents early exit with piped stdin)
+const _keepAlive = setInterval(() => {}, 60000);
+process.on("exit", () => { clearInterval(_keepAlive); closeRL(); });
 
 function askSecret(question) {
   // Non-TTY fallback: just use regular readline (shows input)
