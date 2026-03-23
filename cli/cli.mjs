@@ -226,7 +226,7 @@ async function install() {
     if (err.stderr && err.stderr.includes("already exists")) {
       log("Plugin already installed, updating...");
       try {
-        run(`openclaw plugins update openclaw-plugin`);
+        run(`openclaw plugins update openher-persona-engine`);
         success("Plugin updated");
       } catch {
         warn("Could not update plugin, continuing with existing version");
@@ -367,7 +367,7 @@ async function install() {
 
   // Configure OpenClaw plugin
   try {
-    run(`openclaw config set plugins.entries.openclaw-plugin.config.OPENHER_DEFAULT_PERSONA ${persona.id}`);
+    run(`openclaw config set plugins.entries.openher-persona-engine.config.OPENHER_DEFAULT_PERSONA ${persona.id}`);
     success(`Default persona set to ${persona.id}`);
   } catch {
     warn("Could not set default persona in OpenClaw config");

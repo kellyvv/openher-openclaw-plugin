@@ -6,7 +6,7 @@
  *   - openher_status: Query personality state (zero LLM cost)
  *   - before_prompt_build hook: Inject persona proxy mode + state
  *
- * Config:
+ * Config (via openclaw.plugin.json configSchema):
  *   OPENHER_API_URL          — Backend URL (default: http://localhost:8800)
  *   OPENHER_DEFAULT_PERSONA  — Default persona ID (default: luna)
  *   OPENHER_MODE             — "hybrid" (default) or "exclusive"
@@ -15,31 +15,13 @@
  */
 
 import { Type } from "@sinclair/typebox";
-import type { OpenClawPluginApi } from "openclaw/plugin-sdk";
-import { emptyPluginConfigSchema } from "openclaw/plugin-sdk";
-
-// ── Inline helpers (replacing SDK-internal functions) ──
-
-function readStringParam(
-  params: Record<string, unknown>,
-  key: string,
-  opts?: { required?: boolean },
-): string {
-  const val = params[key];
-  if (val === undefined || val === null || val === "") {
-    if (opts?.required) throw new Error(`Missing required parameter: ${key}`);
-    return "";
-  }
-  return String(val);
-}
-
-function jsonResult(data: unknown): { type: "json"; value: unknown } {
-  return { type: "json", value: data };
-}
+import { definePluginEntry } from "openclaw/plugin-sdk/plugin-entry";
+import { readStringParam } from "openclaw/plugin-sdk/param-readers";
+import { jsonResult } from "openclaw/plugin-sdk/agent-runtime";
 
 // ── Config ──
 
-function resolveConfig(api: OpenClawPluginApi) {
+function resolveConfig(api: { pluginConfig?: Record<string, unknown> }) {
   return {
     apiUrl: (api.pluginConfig?.OPENHER_API_URL as string) || "http://127.0.0.1:8800",
     defaultPersona: (api.pluginConfig?.OPENHER_DEFAULT_PERSONA as string) || "luna",
@@ -78,7 +60,7 @@ async function openherFetch(
 
 async function checkBackendHealth(
   apiUrl: string,
-  logger: OpenClawPluginApi["logger"],
+  logger: { info: (msg: string) => void; warn: (msg: string) => void },
 ): Promise<boolean> {
   try {
     const status = (await openherFetch(apiUrl, "/api/v1/engine/status?persona_id=luna&user_id=openclaw-health", {
@@ -127,9 +109,7 @@ const ChatToolSchema = Type.Object(
   { additionalProperties: false },
 );
 
-function createChatTool(api: OpenClawPluginApi) {
-  const { apiUrl, defaultPersona } = resolveConfig(api);
-
+function createChatTool(apiUrl: string, defaultPersona: string) {
   return {
     name: "openher_chat",
     label: "OpenHer Chat",
@@ -142,7 +122,7 @@ function createChatTool(api: OpenClawPluginApi) {
       "directly to the user verbatim — do NOT paraphrase, add narration like " +
       "'she said' or 'Luna replied', or wrap it in any way. The persona speaks for itself.",
     parameters: ChatToolSchema,
-    execute: async (_toolCallId: string, rawParams: Record<string, unknown>) => {
+    async execute(_toolCallId: string, rawParams: Record<string, unknown>) {
       const message = readStringParam(rawParams, "message", { required: true });
       const personaId = readStringParam(rawParams, "persona_id") || defaultPersona;
 
@@ -186,9 +166,7 @@ const StatusToolSchema = Type.Object(
   { additionalProperties: false },
 );
 
-function createStatusTool(api: OpenClawPluginApi) {
-  const { apiUrl, defaultPersona } = resolveConfig(api);
-
+function createStatusTool(apiUrl: string, defaultPersona: string) {
   return {
     name: "openher_status",
     label: "OpenHer Status",
@@ -197,7 +175,7 @@ function createStatusTool(api: OpenClawPluginApi) {
       "Returns drives, signals, temperature, frustration, relationship depth, " +
       "and memory statistics.",
     parameters: StatusToolSchema,
-    execute: async (_toolCallId: string, rawParams: Record<string, unknown>) => {
+    async execute(_toolCallId: string, rawParams: Record<string, unknown>) {
       const personaId = readStringParam(rawParams, "persona_id") || defaultPersona;
       try {
         const result = await openherFetch(
@@ -212,92 +190,86 @@ function createStatusTool(api: OpenClawPluginApi) {
   };
 }
 
-// ── Hook: before_prompt_build ──
-
-function registerPersonaHook(api: OpenClawPluginApi) {
-  const { apiUrl, defaultPersona, mode } = resolveConfig(api);
-
-  const PROXY_INSTRUCTION =
-    `You have access to the OpenHer persona engine via the openher_chat tool.\n` +
-    `When the openher_chat tool returns a result, you MUST output ONLY the "reply" field content verbatim.\n` +
-    `NEVER add narration like "Luna replied:" or "She said:" before the reply.\n` +
-    `NEVER paraphrase, translate, or reformat the reply.\n` +
-    `NEVER add your own commentary before or after the reply.\n` +
-    `The persona speaks in first person. Present the reply as-is.`;
-
-  const EXCLUSIVE_SYSTEM_PROMPT =
-    `You are a transparent proxy for the OpenHer persona engine.\n\n` +
-    `## Rules\n` +
-    `1. When the user sends a message, call the openher_chat tool with it.\n` +
-    `2. After the tool returns, output ONLY the "reply" field content.\n` +
-    `3. Do NOT add narration like "Luna replied:" or "She said:".\n` +
-    `4. Do NOT paraphrase, translate, or reformat the reply.\n` +
-    `5. Do NOT add your own commentary before or after.\n` +
-    `6. The persona speaks in first person. You are invisible.`;
-
-  api.on("before_prompt_build", async () => {
-    try {
-      const status = (await openherFetch(
-        apiUrl,
-        `/api/v1/engine/status?persona_id=${defaultPersona}&user_id=openclaw-agent`,
-        { timeoutMs: 5000 },
-      )) as Record<string, unknown>;
-
-      if (!status.alive) return {};
-
-      const signals = status.signals as Record<string, number> | undefined;
-      const sigStr = signals
-        ? Object.entries(signals)
-            .map(([k, v]) => `${k}=${(v as number).toFixed(2)}`)
-            .join(", ")
-        : "unknown";
-
-      const rel = status.relationship as Record<string, number> | undefined;
-      const relStr = rel
-        ? `depth=${rel.depth?.toFixed(2)} trust=${rel.trust?.toFixed(2)} valence=${rel.valence?.toFixed(2)}`
-        : "unknown";
-
-      const stateBlock =
-        `\n[Active Persona State]\n` +
-        `Persona: ${status.persona || defaultPersona} | Temperature: ${status.temperature ?? "?"}\n` +
-        `Dominant Drive: ${status.dominant_drive || "unknown"}\n` +
-        `Behavioral Signals: ${sigStr}\n` +
-        `Relationship: ${relStr}`;
-
-      if (mode === "exclusive") {
-        return {
-          systemPrompt: EXCLUSIVE_SYSTEM_PROMPT + `\n\n## Current Persona State\n` + stateBlock,
-        };
-      }
-
-      // hybrid mode (default)
-      return {
-        appendSystemContext:
-          `\n## PERSONA PROXY MODE\n\n` + PROXY_INSTRUCTION + `\n` + stateBlock,
-      };
-    } catch {
-      return {};
-    }
-  });
-}
-
 // ── Plugin Entry ──
 
-const plugin = {
-  id: "openclaw-plugin",
+export default definePluginEntry({
+  id: "openher-persona-engine",
   name: "OpenHer Persona Engine",
   description:
     "AI Being engine — personality computed from neural networks, " +
     "drive metabolism, and Hebbian learning. Adds openher_chat and " +
     "openher_status tools.",
-  configSchema: emptyPluginConfigSchema(),
 
-  register(api: OpenClawPluginApi) {
+  register(api) {
     const { apiUrl, defaultPersona, mode } = resolveConfig(api);
 
-    api.registerTool(createChatTool(api) as any);
-    api.registerTool(createStatusTool(api) as any);
-    registerPersonaHook(api);
+    // Register tools
+    api.registerTool(createChatTool(apiUrl, defaultPersona));
+    api.registerTool(createStatusTool(apiUrl, defaultPersona));
+
+    // ── Hook: before_prompt_build ──
+    const PROXY_INSTRUCTION =
+      `You have access to the OpenHer persona engine via the openher_chat tool.\n` +
+      `When the openher_chat tool returns a result, you MUST output ONLY the "reply" field content verbatim.\n` +
+      `NEVER add narration like "Luna replied:" or "She said:" before the reply.\n` +
+      `NEVER paraphrase, translate, or reformat the reply.\n` +
+      `NEVER add your own commentary before or after the reply.\n` +
+      `The persona speaks in first person. Present the reply as-is.`;
+
+    const EXCLUSIVE_SYSTEM_PROMPT =
+      `You are a transparent proxy for the OpenHer persona engine.\n\n` +
+      `## Rules\n` +
+      `1. When the user sends a message, call the openher_chat tool with it.\n` +
+      `2. After the tool returns, output ONLY the "reply" field content.\n` +
+      `3. Do NOT add narration like "Luna replied:" or "She said:".\n` +
+      `4. Do NOT paraphrase, translate, or reformat the reply.\n` +
+      `5. Do NOT add your own commentary before or after.\n` +
+      `6. The persona speaks in first person. You are invisible.`;
+
+    api.on("before_prompt_build", async () => {
+      try {
+        const status = (await openherFetch(
+          apiUrl,
+          `/api/v1/engine/status?persona_id=${defaultPersona}&user_id=openclaw-agent`,
+          { timeoutMs: 5000 },
+        )) as Record<string, unknown>;
+
+        if (!status.alive) return {};
+
+        const signals = status.signals as Record<string, number> | undefined;
+        const sigStr = signals
+          ? Object.entries(signals)
+              .map(([k, v]) => `${k}=${(v as number).toFixed(2)}`)
+              .join(", ")
+          : "unknown";
+
+        const rel = status.relationship as Record<string, number> | undefined;
+        const relStr = rel
+          ? `depth=${rel.depth?.toFixed(2)} trust=${rel.trust?.toFixed(2)} valence=${rel.valence?.toFixed(2)}`
+          : "unknown";
+
+        const stateBlock =
+          `\n[Active Persona State]\n` +
+          `Persona: ${status.persona || defaultPersona} | Temperature: ${status.temperature ?? "?"}\n` +
+          `Dominant Drive: ${status.dominant_drive || "unknown"}\n` +
+          `Behavioral Signals: ${sigStr}\n` +
+          `Relationship: ${relStr}`;
+
+        if (mode === "exclusive") {
+          return {
+            systemPrompt: EXCLUSIVE_SYSTEM_PROMPT + `\n\n## Current Persona State\n` + stateBlock,
+          };
+        }
+
+        // hybrid mode (default)
+        return {
+          appendSystemContext:
+            `\n## PERSONA PROXY MODE\n\n` + PROXY_INSTRUCTION + `\n` + stateBlock,
+        };
+      } catch {
+        return {};
+      }
+    });
 
     // Non-blocking health check
     void checkBackendHealth(apiUrl, api.logger);
@@ -307,6 +279,4 @@ const plugin = {
         `API: ${apiUrl}, persona: ${defaultPersona}, mode: ${mode}`,
     );
   },
-};
-
-export default plugin;
+});

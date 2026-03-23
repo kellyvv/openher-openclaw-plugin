@@ -1,5 +1,8 @@
 {
-  "id": "openclaw-plugin",
+  "id": "openher-persona-engine",
+  "name": "OpenHer Persona Engine",
+  "description": "AI Being engine — personality computed from neural networks, drive metabolism, and Hebbian learning",
+  "version": "2.0.0",
   "configSchema": {
     "type": "object",
     "additionalProperties": false,
@@ -17,6 +20,22 @@
         "description": "Proxy mode: 'hybrid' preserves OpenClaw capabilities; 'exclusive' overrides system prompt for pure persona chat",
         "enum": ["hybrid", "exclusive"]
       }
+    }
+  },
+  "uiHints": {
+    "OPENHER_API_URL": {
+      "label": "Backend URL",
+      "placeholder": "http://localhost:8800",
+      "help": "URL where the OpenHer backend is running"
+    },
+    "OPENHER_DEFAULT_PERSONA": {
+      "label": "Default Persona",
+      "placeholder": "luna",
+      "help": "Which persona to use by default (luna, iris, vivian, kai, etc.)"
+    },
+    "OPENHER_MODE": {
+      "label": "Mode",
+      "help": "hybrid = keep OpenClaw tools; exclusive = pure persona proxy"
     }
   }
 }
